@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers("/market/api/v1/auth/**").permitAll()
+                .requestMatchers("/market/api/v1/controller/**").permitAll()
                 .requestMatchers(HttpMethod.POST,"/market/api/v1/goods").hasRole(Role.MANAGER.name())
                 .anyRequest()
                 .authenticated()

@@ -17,4 +17,24 @@ public class ExceptionController {
                 .build();
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<RestError> handler(UserExistedException e) {
+        RestError error = RestError.builder()
+                .message(e.getMessage())
+                .statusCode(HttpStatus.FORBIDDEN.value())
+                .timestamp(System.currentTimeMillis())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<RestError> handler(StatusNotValid e) {
+        RestError error = RestError.builder()
+                .message(e.getMessage())
+                .statusCode(HttpStatus.FORBIDDEN.value())
+                .timestamp(System.currentTimeMillis())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+    }
 }

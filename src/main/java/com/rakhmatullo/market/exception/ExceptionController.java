@@ -37,4 +37,14 @@ public class ExceptionController {
                 .build();
         return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<RestError> handler(ShopNotFoundException e) {
+        RestError error = RestError.builder()
+                .message(e.getMessage())
+                .statusCode(HttpStatus.NOT_FOUND.value())
+                .timestamp(System.currentTimeMillis())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
 }
